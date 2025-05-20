@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="">
+<head>
+    <meta charset="UTF-8">
+    <title>Nova Bank Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="main-container">
+        <div class="login-box">
+            <div class="logo-container">
+                <!-- Updated logo reference -->
+                <img src="{{ url_for('static', filename='images/nova_logo.png') }}" alt="Nova Bank Logo" class="logo">
+            </div>
+            <h2>Sign in to Nova Bank</h2>
+            <p class="subtitle">Secure and simple banking – anytime, anywhere.</p>
+
+            <form method="POST">
+                <input type="text" name="username" placeholder="Username or Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <div class="form-options">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit">Sign In</button>
+            </form>
+
+            <hr>
+
+            <p class="signup-call">New to Nova Bank?</p>
+            <a href="#" class="signup-link">Create an Account</a>
+
+            <p class="footnote">© 2025 Nova Bank. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        const hour = new Date().getHours();
+        const theme = (hour >= 6 && hour < 18) ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+    </script>
+</body>
+</html>
