@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime
 import json
+import os  # Needed to get PORT from environment
 
 app = Flask(__name__)
 app.secret_key = 'super-secret-key'  # Required for session use
@@ -48,7 +49,7 @@ def dashboard():
 
     return render_template("dashboard.html",
                            greeting=greeting,
-                           balance=current_balance)
+                           balance="{:,.2f}".format(current_balance))  # Optional: add comma formatting
 
 @app.route('/logout')
 def logout():
@@ -56,4 +57,6 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # ✅ This is the line that fixes the Render deployment issue
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
